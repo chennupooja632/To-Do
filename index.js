@@ -8,15 +8,10 @@ const todoList = () => {
     }
   
     const overdue = () => {
-      // Write the date check condition here and return the array of overdue items accordingly.
-      // FILL YOUR CODE HERE
-      // ..
-      // ..
-      // ..
       var x;
       var over_due=[];
-      for (x in all){
-        if (all[x].dueDate<today){
+      for (x=0;x<all.length;x++){
+        if (all[x]['dueDate']<today){
           over_due.push(all[x]);
         }
       }
@@ -24,15 +19,10 @@ const todoList = () => {
     }
   
     const dueToday = () => {
-      // Write the date check condition here and return the array of todo items that are due today accordingly.
-      // FILL YOUR CODE HERE
-      // ..
-      // ..
-      // ..
       var x;
       var due_today=[];
-      for (x in all){
-        if(all[x]===today){
+      for (x=0;x<all.length;x++){
+        if(all[x]['dueDate']===today){
           due_today.push(all[x]);
         }
       }
@@ -40,15 +30,10 @@ const todoList = () => {
     }
   
     const dueLater = () => {
-      // Write the date check condition here and return the array of todo items that are due later accordingly.
-      // FILL YOUR CODE HERE
-      // ..
-      // ..
-      // ..
       var x;
       var due_later=[];
-      for (x in all){
-        if (all[x]>today){
+      for (x=0;x<all.length;x++){
+        if (all[x]['dueDate']>today){
           due_later.push(all[x]);
         }
       }
@@ -56,12 +41,31 @@ const todoList = () => {
     }
   
     const toDisplayableList = (list) => {
-      // Format the To-Do list here, and return the output string as per the format given above.
-      // FILL YOUR CODE HERE
-      // ..
-      // ..
-      // ..
-      // return OUTPUT_STRING
+      var result = ""
+      for (let index = 0; index < list.length; index++) {
+        
+        
+        if(list[index]['dueDate']!=today){
+          if(list[index]['completed']==true){
+            result += '[x] '+list[index]['title']+" "+list[index]['dueDate']
+          }
+          else{
+            result+='[ ] '+list[index]['title']+" "+list[index]['dueDate']
+          }
+        }
+        else{
+          if(list[index]['completed']==true){
+            result += '[x] '+list[index]['title']
+          }
+          else{
+            result+='[ ] '+list[index]['title']
+          }
+        }
+        if(index<list.length-1 && list.length>1){
+          result+="\n"
+        }
+      }
+      return result
     }
   
     return { all, add, markAsComplete, overdue, dueToday, dueLater, toDisplayableList };
